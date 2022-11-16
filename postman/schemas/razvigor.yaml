@@ -2,17 +2,12 @@ openapi: '3.0.0'
 info:
   version: '1.0.0'
   title: 'razvigor'
-  description: Buy or rent spacecrafts
-
+  description: 1ForFit products project
 paths:
   /spacecrafts/{spacecraftId}:
     parameters:
-      - name: spacecraftId
-        description: The unique identifier of the spacecraft
-        in: path
-        required: true
         schema:
-          $ref: '#/components/schemas/SpacecraftId'
+        $ref: '#/components/schemas/SpacecraftId'
     get:
       summary: Read a spacecraft
       responses:

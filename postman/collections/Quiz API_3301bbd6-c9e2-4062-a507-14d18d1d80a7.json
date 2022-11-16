@@ -2,12 +2,12 @@
 	"info": {
 		"_postman_id": "66d6d4f0-5527-4303-8340-4515817c29ac",
 		"name": "Quiz API",
-		"description": "Buy or rent spacecrafts",
+		"description": "Quiz API requests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Read a spacecraft",
+			"name": "List questions and answers",
 			"id": "c970d987-cc4d-4991-b037-9a8a42c977bb",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -21,21 +21,14 @@
 					}
 				],
 				"url": {
-					"raw": "{{baseUrl}}/spacecrafts/:spacecraftId",
+					"raw": "{{baseUrl}}/api/init/quiz",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"spacecrafts",
-						":spacecraftId"
-					],
-					"variable": [
-						{
-							"id": "297e1d75-99ce-43a2-baea-a141cdf860a2",
-							"key": "spacecraftId",
-							"value": "Ut",
-							"description": "(Required) The unique identifier of the spacecraft"
-						}
+						"api",
+						"init",
+						"quiz"
 					]
 				}
 			},
@@ -170,6 +163,163 @@
 					"body": "{\n  \"message\": \"ut consequat\"\n}"
 				}
 			]
+		},
+		{
+			"name": "Save answers",
+			"id": "9ea72b54-0401-4f3d-81d4-02982942425c",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/diets",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"diets"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "8c3a7049-8d7c-41f5-842d-b46e9141e34b",
+					"name": "The spacecraft corresponding to the provided `spacecraftId`",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: apikey",
+								"key": "X-Api-Key",
+								"value": "<API Key>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/spacecrafts/:spacecraftId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"spacecrafts",
+								":spacecraftId"
+							],
+							"variable": [
+								{
+									"key": "spacecraftId",
+									"value": "Ut",
+									"description": "(Required) The unique identifier of the spacecraft"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "{\n  \"id\": \"<string>\",\n  \"name\": \"eiusmod Duis ipsum cupidatat\",\n  \"type\": \"probe\",\n  \"description\": \"eu dolore ex\"\n}"
+				},
+				{
+					"id": "186c8dd0-363c-4d78-bc5e-290cbe37af5d",
+					"name": "No spacecraft found for the provided `spacecraftId`",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: apikey",
+								"key": "X-Api-Key",
+								"value": "<API Key>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/spacecrafts/:spacecraftId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"spacecrafts",
+								":spacecraftId"
+							],
+							"variable": [
+								{
+									"key": "spacecraftId",
+									"value": "Ut",
+									"description": "(Required) The unique identifier of the spacecraft"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "{\n  \"message\": \"ut consequat\"\n}"
+				},
+				{
+					"id": "64f40347-1e8b-4ea3-b917-818a9e397925",
+					"name": "Unexpected error",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: apikey",
+								"key": "X-Api-Key",
+								"value": "<API Key>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/spacecrafts/:spacecraftId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"spacecrafts",
+								":spacecraftId"
+							],
+							"variable": [
+								{
+									"key": "spacecraftId",
+									"value": "Ut",
+									"description": "(Required) The unique identifier of the spacecraft"
+								}
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "{\n  \"message\": \"ut consequat\"\n}"
+				}
+			]
 		}
 	],
 	"auth": {
@@ -192,11 +342,33 @@
 			}
 		]
 	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "06bc0fcf-d078-4fd8-a019-542d70ec627c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "8bebf695-2053-44b4-a1b2-9600702eac44",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
 	"variable": [
 		{
-			"id": "7ac60a81-deee-4a54-932a-8964f0e2738c",
+			"id": "dd70a49f-f827-4605-bb4f-0fe1c5c2e61c",
 			"key": "baseUrl",
-			"value": "/",
+			"value": "usa.yourketo.test",
 			"type": "string"
 		}
 	]
